@@ -11,17 +11,25 @@ get {
 }
 
 assert {
-  req.status: eq 200
-  req.status: neq 400
-  req.body.success: eq true
-  req.body.count: gt 2
+  res.status: eq 200
+  res.status: neq 400
+  res.body.success: eq true
+  res.body.count: gt 2
 }
 
 script:post-response {
   const { success, employees, count } = res.getBody();
   if(employees.length > 0) {
     bru.setVar("employeeId", employees[0].id);
+    // Don't add tests in script.
+    // expect(res.getStatus()).to.equal(200);
   }
+}
+
+tests {
+  test("should return employees list", function () {
+    
+  })
 }
 
 settings {
