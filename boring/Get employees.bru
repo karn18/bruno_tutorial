@@ -1,0 +1,36 @@
+meta {
+  name: Get employees
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{boringURL}}/employees
+  body: none
+  auth: inherit
+}
+
+assert {
+  req.status: eq 200
+  req.status: neq 400
+  req.body.success: eq true
+  req.body.count: gt 2
+}
+
+script:post-response {
+  const { success, employees, count } = res.getBody();
+  if(employees.length > 0) {
+    bru.setVar("employeeId", employees[0].id);
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Get all available employees.
+  
+  
+}

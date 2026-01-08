@@ -1,0 +1,41 @@
+meta {
+  name: Get photos
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{boringURL}}/photos?page=2&limit=20&sort_by=file_size&sort_order=desc
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 2
+  limit: 20
+  sort_by: file_size
+  sort_order: desc
+}
+
+assert {
+  res.status: eq 200
+  res.body.success: eq true
+  res.body.count: eq 20
+}
+
+tests {
+  test("should return success with photo list", function () {
+    expect(res.getStatus()).to.equal(200);
+    const body = res.getBody();
+    const { success, photos, count, total_pages } = body;
+    
+    expect(success).to.equal(true);
+    expect(count).to.be.equal(20);
+    expect(photos).to.have.lengthOf(20);
+  });
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
