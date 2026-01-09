@@ -14,3 +14,21 @@ settings {
   encodeUrl: true
   timeout: 0
 }
+
+docs {
+  Retrieve detailed information for a specific employee by their ID.
+  
+  Path Parameters:
+  - employeeId: The unique identifier of the employee (retrieved from previous request)
+  
+  Returns a single employee object with complete profile information including:
+  - Personal details (name, email, phone)
+  - Employment information (position, department, hire date)
+  - Contact and location details
+  - Performance and status information
+  
+  Note: This endpoint requires a valid employeeId variable to be set,
+  typically obtained from the "Get employees" endpoint.
+  
+  Authentication: Inherits from collection settings
+}

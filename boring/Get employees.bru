@@ -38,7 +38,16 @@ settings {
 }
 
 docs {
-  Get all available employees.
+  Get all available employees from the company database.
   
+  Returns a list of employee objects with basic information.
+  The response includes employee count and success status.
+  Sets the first employee ID as a variable for use in subsequent requests.
   
+  Expected response:
+  - success: boolean
+  - employees: array of employee objects
+  - count: number of employees returned
+  
+  Authentication: Inherits from collection settings
 }

@@ -39,3 +39,21 @@ settings {
   encodeUrl: true
   timeout: 0
 }
+
+docs {
+  Retrieve photos from the gallery with pagination and sorting.
+  
+  Query Parameters:
+  - page: Page number to retrieve (default: 2)
+  - limit: Number of photos per page (default: 20)
+  - sort_by: Field to sort by (default: file_size)
+  - sort_order: Sort direction (default: desc)
+  
+  Returns paginated photo data with metadata including:
+  - success: boolean status
+  - photos: array of photo objects
+  - count: number of photos on current page
+  - total_pages: total number of pages available
+  
+  Authentication: Inherits from collection settings
+}
